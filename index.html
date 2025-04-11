@@ -1,1 +1,94 @@
-test
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard del Colegio Secundaria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS -->
+</head>
+<body>
+
+    <header>
+        <h1>Dashboard del Colegio Secundaria</h1>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Estudiantes Registrados</h2>
+            <p id="totalEstudiantes">150</p>
+        </div>
+        <div class="card">
+            <h2>Asistencia Mensual</h2>
+            <canvas id="asistenciaChart"></canvas>
+        </div>
+        <div class="card">
+            <h2>Calificaciones Promedio</h2>
+            <canvas id="calificacionesChart"></canvas>
+        </div>
+        <div class="card">
+            <h2>Actividades Recientes</h2>
+            <ul id="actividadesRecientes">
+                <li>Excursión a la montaña - 15 de abril</li>
+                <li>Competencia de matemáticas - 20 de abril</li>
+                <li>Feria de ciencias - 25 de abril</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Datos de ejemplo para asistencia y calificaciones
+        const labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'];
+        const asistenciaData = [90, 85, 88, 92, 87, 95];
+        const calificacionesData = [75, 80, 78, 85, 82, 88];
+
+        // Gráfico de Asistencia
+        const ctxAsistencia = document.getElementById('asistenciaChart').getContext('2d');
+        const asistenciaChart = new Chart(ctxAsistencia, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Asistencia (%)',
+                    data: asistenciaData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Gráfico de Calificaciones
+        const ctxCalificaciones = document.getElementById('calificacionesChart').getContext('2d');
+        const calificacionesChart = new Chart(ctxCalificaciones, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Calificaciones Promedio',
+                    data: calificacionesData,
+                    backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
